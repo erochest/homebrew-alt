@@ -10,6 +10,7 @@ class Vim < Formula
   head 'https://vim.googlecode.com/hg/'
 
   def install
+    ruby = `which ruby`
     system "./configure", "--prefix=#{prefix}",
                           "--mandir=#{man}",
                           "--enable-gui=no",
@@ -19,7 +20,7 @@ class Vim < Formula
                           "--with-tlib=ncurses",
                           "--enable-pythoninterp",
                           "--enable-rubyinterp",
-                          "--with-ruby-command=/usr/bin/ruby",
+                          "--with-ruby-command=#{ruby}",
                           "--with-features=huge"
     system "make"
     system "make install"
